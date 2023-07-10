@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           elevation: 0.5,
-          leading: const Row(
+          leading: Row(
             children: [
               SizedBox(width: 16),
               Text(
