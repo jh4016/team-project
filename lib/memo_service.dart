@@ -28,7 +28,9 @@ class MemoService extends ChangeNotifier {
   }
 
   List<Memo> memoList = [
-    Memo(content: '이름 \n [팀]과 [자신]에 대한 설명 및 MBTI \n 객관적으로 살펴본 자신의 장점 \n자신의 스타일 협업 스타일 소개'), // 더미(dummy) 데이터
+    Memo(
+        content:
+            '이름 \n [팀]과 [자신]에 대한 설명 및 MBTI \n 객관적으로 살펴본 자신의 장점 \n자신의 스타일 협업 스타일 소개'), // 더미(dummy) 데이터
   ];
 
   createMemo({required String content}) {

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'memo_service.dart';
 import 'home_page.dart';
+
 late SharedPreferences prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
