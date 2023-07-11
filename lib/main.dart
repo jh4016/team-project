@@ -1,30 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'memo_service.dart';
-import 'home_page.dart';
-late SharedPreferences prefs;
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => MemoService()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+
+import 'HomePage.dart';
+
+/* This is the data that we are going to use to render the grid of products using Gridview.
+As pointed out by Pranay, you can use the fetched data from a remote server.
+but for the sake of simplicity, I am using hardcoded data.
+*/
+
+/*중요 파일*/
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      title: 'Card Navigation',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: HomePage(),
     );
   }
