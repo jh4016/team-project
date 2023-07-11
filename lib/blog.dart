@@ -97,7 +97,10 @@ Widget blog(BuildContext context) {
                     style: TextStyle(
                       color: Colors.blue,
                     ),
-                    recognizer: TapGestureRecognizer(),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        launchUrl(Uri.parse('https://velog.io/@0poison'));
+                      },
                   )
                 ],
               ),
