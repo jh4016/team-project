@@ -6,7 +6,7 @@ Widget goal(BuildContext context) {
     appBar: AppBar(
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Icon(Icons.arrow_back), color: Colors.black, // 앱바 아이콘 색상
+        icon: Icon(Icons.arrow_back),  color:  Color(0xFF000000), // 앱바 아이콘 색상
         onPressed: () {
           Navigator.pop(context); // 뒤로 가기 버튼 동작
         },
@@ -16,11 +16,22 @@ Widget goal(BuildContext context) {
         style: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+           color:  Color(0xFF000000),
+          fontFamily: 'batang',
         ),
       ),
     ),
     body: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFFFB3B3), // 첫 번째 색상
+            Color(0xFFBBE0FF), // 두 번째 색상
+          ],
+        ),
+      ),
       child: Center(
         child: Text(
               '\t 1. 성실하게 공부하자 \n\n'
@@ -29,12 +40,12 @@ Widget goal(BuildContext context) {
               '\t 4. 중요한 건 꺾였는데도 하는 마음 \n\n',
           style: TextStyle(
             fontSize: 25,
-            fontWeight: FontWeight.normal,
-            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF054B2C),
+            fontFamily: 'batang',
           ),
         ),
       ),
-      color: Colors.white,
     ),
   );
 }
