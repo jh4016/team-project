@@ -123,7 +123,7 @@ class TeamIntroductionPage extends StatelessWidget {
                         title: Text(
                           teamMembers[index].name,
                           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'human',
-                              color:  Color(0xFF4A5E16)),
+                              color:  Color(0xFFA8D248)),
                         ),
                       ),
                     ),

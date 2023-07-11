@@ -50,7 +50,7 @@ class TeamMemberDetailPage extends StatelessWidget {
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'human',
-                        color:  Color(0xFF4A5E16)
+                        color:  Color(0xFFA8D248)
                     ),
                   )
                 ],
