@@ -8,6 +8,7 @@ class TeamMember {
   final String description;
   final String merit;
   final String style;
+  final String image;
 
   TeamMember({
     required this.name,
@@ -15,6 +16,7 @@ class TeamMember {
     required this.description,
     required this.merit,
     required this.style,
+    required this.image,
   });
 }
 
@@ -24,7 +26,6 @@ class TeamIntroductionPage extends StatefulWidget {
 }
 
 class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
-
   void addTeamMember(TeamMember member) {
     setState(() {
       teamMembers.add(member);
@@ -230,12 +231,12 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                     child: Text('Add'),
                     onPressed: () {
                       TeamMember newMember = TeamMember(
-                        name: name,
-                        mbti: mbti,
-                        description: description,
-                        merit: merit,
-                        style: style,
-                      );
+                          name: name,
+                          mbti: mbti,
+                          description: description,
+                          merit: merit,
+                          style: style,
+                          image: "assets/images/img1.png");
 
                       addTeamMember(newMember);
 
