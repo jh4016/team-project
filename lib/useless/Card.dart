@@ -50,11 +50,11 @@
 //         elevation: 0,
 //         backgroundColor: Colors.white,
 //         centerTitle: false,
-//         iconTheme: IconThemeData(color: Colors.black),
+//         iconTheme: IconThemeData( color:  Color(0xFF000000)),
 //         title: Text(
 //           "팀 소개",
 //           style: TextStyle(
-//             color: Colors.black,
+//              color:  Color(0xFF000000),
 //             fontSize: 28,
 //             fontWeight: FontWeight.bold,
 //           ),
@@ -86,7 +86,7 @@
 //                       Container(
 //                         width: double.infinity,
 //                         height: 200,
-//                         color: Colors.black.withOpacity(0.5),
+//                          color:  Color(0xFF000000).withOpacity(0.5),
 //                       ),
 //                       Text(
 //                         name,

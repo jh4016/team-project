@@ -64,60 +64,73 @@ class TeamIntroductionPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('팀원 소개'),
         titleTextStyle: TextStyle(
-            color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+             color:  Color(0xFF000000), fontSize: 30, fontWeight: FontWeight.bold),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData( color:  Color(0xFF000000)),
       ),
-      body: Center(
-        child: Container(
-          width: 130, // 리스트의 너비를 조정하세요
-          height: 350, // 리스트의 높이를 조정하세요
-          child: ListView.builder(
-            itemCount: teamMembers.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 300),
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          TeamMemberDetailPage(member: teamMembers[index]),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return SlideTransition(
-                          position: Tween<Offset>(
-                            begin: Offset(0.0, 1.0),
-                            end: Offset.zero,
-                          ).animate(animation),
-                          child: child,
-                        );
-                      },
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFE5F6FF), // 첫 번째 색상
+              Color(0xFFF9EBFF), // 두 번째 색상
+            ],
+          ),
+        ),
+        child: Center(
+          child: Container(
+            width: 130, // 리스트의 너비를 조정하세요
+            height: 350, // 리스트의 높이를 조정하세요
+            child: ListView.builder(
+              itemCount: teamMembers.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            TeamMemberDetailPage(member: teamMembers[index]),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: Offset(0.0, 1.0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(0, 0),
+                      end: Offset.zero,
+                    ).animate(
+                      CurvedAnimation(
+                        parent: ModalRoute.of(context)!.animation!,
+                        curve: Curves.easeInOut,
+                      ),
                     ),
-                  );
-                },
-                child: SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0, 0),
-                    end: Offset.zero,
-                  ).animate(
-                    CurvedAnimation(
-                      parent: ModalRoute.of(context)!.animation!,
-                      curve: Curves.easeInOut,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10), // 상하로 20 포인트의 여백을 설정합니다.
-                    child: ListTile(
-                      title: Text(
-                        teamMembers[index].name,
-                        style: TextStyle(fontSize: 30),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10), // 상하로 20 포인트의 여백을 설정합니다.
+                      child: ListTile(
+                        title: Text(
+                          teamMembers[index].name,
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'human',
+                              color:  Color(0xFFA8D248)),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),)

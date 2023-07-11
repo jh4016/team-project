@@ -22,7 +22,7 @@
 //               Text(
 //                 '블로그',
 //                 style: TextStyle(
-//                   color: Colors.black,
+//                    color:  Color(0xFF000000),
 //                   fontWeight: FontWeight.bold,
 //                   fontSize: 20,
 //                 ),
