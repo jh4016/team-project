@@ -1,4 +1,4 @@
-import 'package:danggn/promise.dart';
+import 'package:teamproject/promise.dart';
 import 'package:flutter/material.dart';
 
 import 'blog.dart';
