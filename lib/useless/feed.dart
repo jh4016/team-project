@@ -39,7 +39,7 @@
 //                 '이름',
 //                 style: TextStyle(
 //                   fontSize: 16,
-//                   color: Colors.black,
+//                    color:  Color(0xFF000000),
 //                 ),
 //                 softWrap: false,
 //                 maxLines: 2,

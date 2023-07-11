@@ -56,7 +56,7 @@
 //                 Container(
 //                   width: double.infinity,
 //                   height: 200,
-//                   color: Colors.black.withOpacity(0.5),
+//                    color:  Color(0xFF000000).withOpacity(0.5),
 //                 ),
 //                 Text(
 //                   name,

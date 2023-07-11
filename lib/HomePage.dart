@@ -33,9 +33,11 @@ class HomePage extends StatelessWidget {
     ];
     return Scaffold(
         appBar: AppBar(
-          title: Text('팀 소개'),
+          title: Text('중꺾마'),
           titleTextStyle: TextStyle(
-              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+              color: Color(0xFF000000),
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
           backgroundColor: Colors.white,
         ),
         body: Center(
@@ -97,7 +99,7 @@ class HomePage extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 200,
-                      color: Colors.black.withOpacity(0.5),
+                      color: Color(0xFF000000).withOpacity(0.5),
                     ),
                     Text(
                       name,

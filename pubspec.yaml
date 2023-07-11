@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.2.0
   provider: ^6.0.5
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -56,11 +57,26 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: batang
+      fonts:
+        - asset: assets/fonts/batang.ttc
+
+    - family: script
+      fonts:
+        - asset: assets/fonts/MATURASC.TTF
+    - family: 조선궁서체
+      fonts:
+        - asset: assets/fonts/조선궁서체.ttf
+    - family: human
+      fonts:
+        - asset: assets/fonts/HMKMRHD.TTF
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

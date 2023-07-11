@@ -6,7 +6,7 @@ Widget promise(BuildContext context) {
     appBar: AppBar(
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Icon(Icons.arrow_back), color: Colors.black, // 앱바 아이콘 색상
+        icon: Icon(Icons.arrow_back),  color:  Color(0xFF000000), // 앱바 아이콘 색상
         onPressed: () {
           Navigator.pop(context); // 뒤로 가기 버튼 동작
         },
@@ -16,27 +16,36 @@ Widget promise(BuildContext context) {
         style: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+           color:  Color(0xFF000000),
+          fontFamily: '조선궁서체',
         ),
       ),
     ),
     body: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFA06F4A), // 첫 번째 색상
+            Color(0xFFFFD6BB), // 두 번째 색상
+          ],
+        ),
+      ),
       child: Center(
         child: Text(
-          '\t 1. 푸쉬할 때 알려주기 \n\n'
-          '\t 2. 사유 없이 지각 하지 않기 \n\n'
-          '\t 3. 생활할 때 소음처리방법? \n\n'
-          '\t 4. 모르는 거 물어볼 때 :\n 검색하고 물어보기 \n\n'
-          '\t 5. 점심시간 및 저녁 시간 :\n 마이크 꺼두기\n\n'
-          '\t 6. 자리 잠시 비울 때 :\n 팀원에게 알려주기',
+          '\t 1. 푸쉬할 때 알려줘라 \n\n'
+          '\t 2. 사유 없이 지각 하지 마라 \n\n'
+          '\t 3. 소음 줄여라 \n\n'
+          '\t 4. 검색하고 물어봐라 \n\n'
+          '\t 5. 밥 먹을 때 조용히\n\n'
+          '\t 6. 말 없이 자리 비우지 마라',
           style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.normal,
-            color: Colors.black,
+            fontSize: 30,
+             color:  Color(0xFF002B4F), fontFamily: '조선궁서체'
           ),
         ),
       ),
-      color: Colors.white,
     ),
   );
 }
