@@ -79,6 +79,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
       appBar: AppBar(
         title: Text('팀원 소개'),
         titleTextStyle: TextStyle(
+
           color: Color(0xFF000000),
           fontSize: 30,
           fontWeight: FontWeight.bold,
@@ -99,8 +100,9 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
         ),
         child: Center(
           child: Container(
-            width: 300,
-            height: double.infinity,
+
+            width: 300,// 리스트의 너비를 조정하세요
+            height: double.infinity,// 리스트의 높이를 조정하세요
             child: ListView.builder(
               itemCount: teamMembers.length,
               itemBuilder: (context, index) {
@@ -134,6 +136,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                         parent: ModalRoute.of(context)!.animation!,
                         curve: Curves.easeInOut,
                       ),
+
                     ),
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
@@ -188,6 +191,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                             name = value;
                           });
                         },
+
                       ),
                       TextField(
                         decoration: InputDecoration(
@@ -231,6 +235,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                       ),
                     ],
                   ),
+
                 ),
                 actions: [
                   TextButton(
@@ -262,5 +267,6 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
         },
       ),
     );
+
   }
 }
