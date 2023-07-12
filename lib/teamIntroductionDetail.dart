@@ -46,10 +46,10 @@ class TeamMemberDetailPage extends StatelessWidget {
                     Text(
                       member.name,
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 29,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'human',
-                          color: Color(0xFFA8D248)),
+                          color: Color(0xFFFFFFFF)),
                     )
                   ],
                 ),
@@ -72,7 +72,7 @@ class TeamMemberDetailPage extends StatelessWidget {
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'human',
-                          color: Color(0xFF2C1577)),
+                          color: Color(0xFFFFFFFF)),
                     )
                   ],
                 ),
