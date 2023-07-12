@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teamproject/teammembers.dart';
 
 import 'teamIntroduction.dart';
 
@@ -21,7 +22,8 @@ class TeamMemberDetailPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Color(0xFF000000)),
       ),
       body: Container(
-        color: member.backgroundColor, // 멤버의 배경색 설정
+        color: member.backgroundColor,
+        // 멤버의 배경색 설정
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(

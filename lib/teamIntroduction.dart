@@ -3,26 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:teamproject/teammembers.dart';
 import 'teamIntroductionDetail.dart';
 
-class TeamMember {
-  final String name;
-  final String mbti;
-  final String description;
-  final String merit;
-  final String style;
-  final Color backgroundColor;
-  final String image;
-
-  TeamMember({
-    required this.name,
-    required this.mbti,
-    required this.description,
-    required this.merit,
-    required this.style,
-    required this.backgroundColor,
-    required this.image,
-  });
-}
-
 class TeamIntroductionPage extends StatefulWidget {
   @override
   _TeamIntroductionPageState createState() => _TeamIntroductionPageState();
@@ -239,8 +219,8 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                           description: description,
                           merit: merit,
                           style: style,
-                          image: "assets/images/img6.png");
-
+                          image: "assets/images/img6.png",
+                          backgroundColor: BoxDecoration(color: Color(0xFFE0E0E0)));
                       addTeamMember(newMember);
 
                       Navigator.pop(context);
