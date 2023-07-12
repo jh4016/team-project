@@ -21,16 +21,7 @@ class TeamMemberDetailPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Color(0xFF000000)),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFFE5F6FF), // 첫 번째 색상
-              Color(0xFFF9EBFF), // 두 번째 색상
-            ],
-          ),
-        ),
+        color: member.backgroundColor, // 멤버의 배경색 설정
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
