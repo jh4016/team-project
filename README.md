@@ -1,2 +1,2 @@
 
-![2023-07-12](https://github.com/jh4016/team-project/assets/106107068/7dd19d7d-7f6a-4540-b317-e696c5f4d0ea)
+![시연 영상](https://github.com/jh4016/team-project/assets/106107068/7ca72497-7f01-4564-a2f0-967b9123c456)
