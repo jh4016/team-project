@@ -132,7 +132,16 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                   description: description,
                   merit: merit,
                   style: style,
-                  image: teamMembers[index].image,
+                  image: teamMembers[index].image, backgroundColor:BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFE5D8C2), // 그라데이션 색상 1
+                      Color(0xFFD02EA2), // 그라데이션 색상 2
+                    ],
+                  ),
+                ),
                 );
 
                 setState(() {
