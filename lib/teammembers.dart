@@ -4,7 +4,7 @@ import 'package:teamproject/teamIntroduction.dart';
 
 List<TeamMember> teamMembers = [
   TeamMember(
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.blueGrey,
     image: 'assets/images/img1.png',
     name: '이진혁',
     mbti: 'INFJ',
@@ -22,8 +22,8 @@ List<TeamMember> teamMembers = [
     style: '최대한 다른 사람의 의견을 수용하면서 소통을 하려고 합니다.',
   ),
   TeamMember(
-    backgroundColor: Colors.yellow,
     image: 'assets/images/img5.png',
+    backgroundColor: Colors.orange,
     name: '양화진',
     mbti: 'idk',
     description: '코딩, 개발 관련 교육은 처음입니다. MBTI 검사는 한 번도 안해봤습니다.',
