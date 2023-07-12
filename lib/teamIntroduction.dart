@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:teamproject/teammembers.dart';
 import 'teamIntroductionDetail.dart';
@@ -132,16 +134,17 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                   description: description,
                   merit: merit,
                   style: style,
-                  image: teamMembers[index].image, backgroundColor:BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFE5D8C2), // 그라데이션 색상 1
-                      Color(0xFFD02EA2), // 그라데이션 색상 2
-                    ],
+                  image: teamMembers[index].image,
+                  backgroundColor: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFFE5D8C2), // 그라데이션 색상 1
+                        Color(0xFFD02EA2), // 그라데이션 색상 2
+                      ],
+                    ),
                   ),
-                ),
                 );
 
                 setState(() {
@@ -169,6 +172,116 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Color(0xFF000000)),
+        actions: [
+          TextButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  String name = '';
+                  String mbti = '';
+                  String description = '';
+                  String merit = '';
+                  String style = '';
+
+                  return AlertDialog(
+                    title: Text('새로운 멤버 추가'),
+                    content: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: '이름',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                name = value;
+                              });
+                            },
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: 'MBTI',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                mbti = value;
+                              });
+                            },
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: '자신의 설명',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                description = value;
+                              });
+                            },
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: '장점',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                merit = value;
+                              });
+                            },
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              labelText: 'Style',
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                style = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        child: Text('Cancel'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      TextButton(
+                        child: Text('Add'),
+                        onPressed: () {
+                          TeamMember newMember = TeamMember(
+                            name: name,
+                            mbti: mbti,
+                            description: description,
+                            merit: merit,
+                            style: style,
+                            backgroundColor: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(Random().nextInt(0xffffffff)),
+                                  Color(Random().nextInt(0xffffffff)),
+                                ],
+                              ),
+                            ),
+                            image: "assets/images/img6.png",
+                          );
+                          addTeamMember(newMember);
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -228,7 +341,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'human',
-                              color:Color(0xFF26569D)
+                            color: Color(0xFF26569D),
                           ),
                         ),
                         trailing: Row(
@@ -256,113 +369,6 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              String name = '';
-              String mbti = '';
-              String description = '';
-              String merit = '';
-              String style = '';
-
-              return AlertDialog(
-                title: Text('새로운 멤버 추가'),
-                content: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: '이름',
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            name = value;
-                          });
-                        },
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'MBTI',
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            mbti = value;
-                          });
-                        },
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: '자신의설명',
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            description = value;
-                          });
-                        },
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: '장점',
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            merit = value;
-                          });
-                        },
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Style',
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            style = value;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                actions: [
-                  TextButton(
-                    child: Text('Cancel'),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  TextButton(
-                    child: Text('Add'),
-                    onPressed: () {
-                      TeamMember newMember = TeamMember(
-                          name: name,
-                          mbti: mbti,
-                          description: description,
-                          merit: merit,
-                          style: style,
-                          backgroundColor: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF45C45C),
-                                Color(0xFFA06F4A),
-                              ],
-                            ),
-                          ),
-                          image: "assets/images/img6.png");
-                      addTeamMember(newMember);
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              );
-            },
-          );
-        },
       ),
     );
   }
