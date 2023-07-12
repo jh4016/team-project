@@ -33,12 +33,27 @@ class HomePage extends StatelessWidget {
     ];
     return Scaffold(
         appBar: AppBar(
-          title: Text('중꺾마'),
-          titleTextStyle: TextStyle(
-              color: Color(0xFF000000),
+          title: Text(
+            '중꺾마',
+            style: TextStyle(
+              color: Colors.white,
               fontSize: 30,
-              fontWeight: FontWeight.bold),
-          backgroundColor: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF3577DE), // 그라데이션 색상 1
+                  Color(0xFF4CB759), // 그라데이션 색상 2
+                ],
+              ),
+            ),
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: Center(
             child: ListView.builder(

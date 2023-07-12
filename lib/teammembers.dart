@@ -1,39 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
-
-class TeamMember {
-  final String name;
-  final String mbti;
-  final String description;
-  final String merit;
-  final String style;
-  final BoxDecoration backgroundColor;
-  final String image;
-
-  TeamMember({
-    required this.name,
-    required this.mbti,
-    required this.description,
-    required this.merit,
-    required this.style,
-    required this.backgroundColor,
-    required this.image,
-  });
-}
+import 'package:teamproject/teamIntroduction.dart';
 
 List<TeamMember> teamMembers = [
   TeamMember(
-    backgroundColor: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color(0xFFE8F1FF), // 그라데이션 색상 1
-          Color(0xFF535B54), // 그라데이션 색상 2
-        ],
-      ),
-    ),
+    backgroundColor: Colors.blueGrey,
     image: 'assets/images/img1.png',
     name: '이진혁',
     mbti: 'INFJ',
@@ -42,9 +13,7 @@ List<TeamMember> teamMembers = [
     style: '의견을 많이 나누면서 브레인스토밍하는걸 추구합니다.',
   ),
   TeamMember(
-    backgroundColor: BoxDecoration(
-      color: Color(0xFFE8F1FF), // 그라데이션 색상 1
-    ),
+    backgroundColor: Colors.pink,
     image: 'assets/images/img2.png',
     name: '신민지',
     mbti: 'ISFP',
@@ -53,17 +22,8 @@ List<TeamMember> teamMembers = [
     style: '최대한 다른 사람의 의견을 수용하면서 소통을 하려고 합니다.',
   ),
   TeamMember(
-    backgroundColor: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color(0xFFE8F1FF), // 그라데이션 색상 1
-          Color(0xFF535B54), // 그라데이션 색상 2
-        ],
-      ),
-    ),
     image: 'assets/images/img5.png',
+    backgroundColor: Colors.orange,
     name: '양화진',
     mbti: 'idk',
     description: '코딩, 개발 관련 교육은 처음입니다. MBTI 검사는 한 번도 안해봤습니다.',
@@ -71,16 +31,7 @@ List<TeamMember> teamMembers = [
     style: '의견을 주시면 거기에 살을 붙이는 식으로 채워넣기를 잘 합니다.',
   ),
   TeamMember(
-    backgroundColor: BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color(0xFFE8F1FF), // 그라데이션 색상 1
-          Color(0xFF1DAD31), // 그라데이션 색상 2
-        ],
-      ),
-    ),
+    backgroundColor: Colors.blue,
     image: 'assets/images/img4.png',
     name: '이수진',
     mbti: 'INTP',
@@ -89,9 +40,7 @@ List<TeamMember> teamMembers = [
     style: '팀원의 의견을 중요시하고 맡은 몫은 끝까지 해내려 합니다.',
   ),
   TeamMember(
-    backgroundColor: BoxDecoration(
-      color: Color(0xFFE8F1FF), // 그라데이션 색상 1
-    ),
+    backgroundColor: Colors.green,
     image: 'assets/images/img3.png',
     name: '윤승재',
     mbti: 'unexpected',
