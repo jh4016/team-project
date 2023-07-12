@@ -236,7 +236,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                           description: description,
                           merit: merit,
                           style: style,
-                          image: "assets/images/img1.png");
+                          image: "assets/images/img6.png");
 
                       addTeamMember(newMember);
 
