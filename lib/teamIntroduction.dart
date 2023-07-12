@@ -176,7 +176,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFFE9FFE2), // 첫 번째 색상
+              Color(0xFFDDFAD4), // 첫 번째 색상2
               Color(0xFFE2E4E4), // 두 번째 색상
             ],
           ),
@@ -270,7 +270,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
               String style = '';
 
               return AlertDialog(
-                title: Text('새로운 멤버를 추가해주세요'),
+                title: Text('새로운 멤버 추가'),
                 content: SingleChildScrollView(
                   child: Column(
                     children: [
