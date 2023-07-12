@@ -1,7 +1,10 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:teamproject/teamIntroduction.dart';
 
 List<TeamMember> teamMembers = [
   TeamMember(
+    backgroundColor: Colors.blue,
     image: 'assets/images/img1.png',
     name: '이진혁',
     mbti: 'INFJ',
@@ -10,6 +13,7 @@ List<TeamMember> teamMembers = [
     style: '의견을 많이 나누면서 브레인스토밍하는걸 추구합니다.',
   ),
   TeamMember(
+    backgroundColor: Colors.pink,
     image: 'assets/images/img2.png',
     name: '신민지',
     mbti: 'ISFP',
@@ -18,6 +22,7 @@ List<TeamMember> teamMembers = [
     style: '최대한 다른 사람의 의견을 수용하면서 소통을 하려고 합니다.',
   ),
   TeamMember(
+    backgroundColor: Colors.yellow,
     image: 'assets/images/img5.png',
     name: '양화진',
     mbti: 'idk',
@@ -26,6 +31,7 @@ List<TeamMember> teamMembers = [
     style: '의견을 주시면 거기에 살을 붙이는 식으로 채워넣기를 잘 합니다.',
   ),
   TeamMember(
+    backgroundColor: Colors.blue,
     image: 'assets/images/img4.png',
     name: '이수진',
     mbti: 'INTP',
@@ -34,6 +40,7 @@ List<TeamMember> teamMembers = [
     style: '팀원의 의견을 중요시하고 맡은 몫은 끝까지 해내려 합니다.',
   ),
   TeamMember(
+    backgroundColor: Colors.green,
     image: 'assets/images/img3.png',
     name: '윤승재',
     mbti: 'unexpected',

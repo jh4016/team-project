@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:teamproject/teammembers.dart';
 import 'teamIntroductionDetail.dart';
 
@@ -8,6 +9,7 @@ class TeamMember {
   final String description;
   final String merit;
   final String style;
+  final Color backgroundColor;
   final String image;
 
   TeamMember({
@@ -16,6 +18,7 @@ class TeamMember {
     required this.description,
     required this.merit,
     required this.style,
+    required this.backgroundColor,
     required this.image,
   });
 }
@@ -236,6 +239,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                           description: description,
                           merit: merit,
                           style: style,
+                          backgroundColor: RenderErrorBox.backgroundColor,
                           image: "assets/images/img1.png");
 
                       addTeamMember(newMember);
