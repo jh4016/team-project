@@ -132,7 +132,16 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                   description: description,
                   merit: merit,
                   style: style,
-                  image: teamMembers[index].image,
+                  image: teamMembers[index].image, backgroundColor:BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFFE5D8C2), // 그라데이션 색상 1
+                      Color(0xFFD02EA2), // 그라데이션 색상 2
+                    ],
+                  ),
+                ),
                 );
 
                 setState(() {
@@ -167,8 +176,8 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.white, // 첫 번째 색상
-              Colors.white, // 두 번째 색상
+              Color(0xFFE9FFE2), // 첫 번째 색상
+              Color(0xFFE2E4E4), // 두 번째 색상
             ],
           ),
         ),
@@ -219,7 +228,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'human',
-                            color: Colors.blue,
+                              color:Color(0xFF26569D)
                           ),
                         ),
                         trailing: Row(
