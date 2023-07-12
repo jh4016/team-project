@@ -269,7 +269,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                                 ],
                               ),
                             ),
-                            image: "assets/images/img6.png",
+                            image: "assets/images/img${Random().nextInt(9) + 6}.png",
                           );
                           addTeamMember(newMember);
                           Navigator.pop(context);
