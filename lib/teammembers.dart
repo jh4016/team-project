@@ -18,7 +18,7 @@ List<TeamMember> teamMembers = [
     style: '최대한 다른 사람의 의견을 수용하면서 소통을 하려고 합니다.',
   ),
   TeamMember(
-    image: 'assets/images/img4.png',
+    image: 'assets/images/img5.png',
     name: '양화진',
     mbti: 'idk',
     description: '코딩, 개발 관련 교육은 처음입니다. MBTI 검사는 한 번도 안해봤습니다.',
@@ -26,7 +26,7 @@ List<TeamMember> teamMembers = [
     style: '의견을 주시면 거기에 살을 붙이는 식으로 채워넣기를 잘 합니다.',
   ),
   TeamMember(
-    image: 'assets/images/img5.png',
+    image: 'assets/images/img4.png',
     name: '이수진',
     mbti: 'INTP',
     description: 'INTP인데, 반반 나오는 것도 있어서 MBTI를 그렇게 믿지는 않습니다.',
