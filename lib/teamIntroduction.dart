@@ -135,16 +135,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                   merit: merit,
                   style: style,
                   image: teamMembers[index].image,
-                  backgroundColor: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFFE5D8C2), // 그라데이션 색상 1
-                        Color(0xFFD02EA2), // 그라데이션 색상 2
-                      ],
-                    ),
-                  ),
+                  backgroundColor: teamMembers[index].backgroundColor,
                 );
 
                 setState(() {
@@ -269,7 +260,8 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                                 ],
                               ),
                             ),
-                            image: "assets/images/img${Random().nextInt(9) + 6}.png",
+                            image:
+                                "assets/images/img${Random().nextInt(9) + 6}.png",
                           );
                           addTeamMember(newMember);
                           Navigator.pop(context);
