@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:teamproject/teammembers.dart';
 import 'teamIntroductionDetail.dart';
 
@@ -9,7 +8,6 @@ class TeamMember {
   final String description;
   final String merit;
   final String style;
-  final Color backgroundColor;
   final String image;
 
   TeamMember({
@@ -18,7 +16,6 @@ class TeamMember {
     required this.description,
     required this.merit,
     required this.style,
-    required this.backgroundColor,
     required this.image,
   });
 }
@@ -55,6 +52,111 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                 setState(() {
                   teamMembers.removeAt(index);
                 });
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void editTeamMember(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String name = teamMembers[index].name;
+        String mbti = teamMembers[index].mbti;
+        String description = teamMembers[index].description;
+        String merit = teamMembers[index].merit;
+        String style = teamMembers[index].style;
+
+        return AlertDialog(
+          title: Text('팀원 정보 수정'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: '이름',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      name = value;
+                    });
+                  },
+                  controller: TextEditingController(text: name),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'MBTI',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      mbti = value;
+                    });
+                  },
+                  controller: TextEditingController(text: mbti),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: '자신의 설명',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      description = value;
+                    });
+                  },
+                  controller: TextEditingController(text: description),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: '장점',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      merit = value;
+                    });
+                  },
+                  controller: TextEditingController(text: merit),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Style',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      style = value;
+                    });
+                  },
+                  controller: TextEditingController(text: style),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: Text('Save'),
+              onPressed: () {
+                TeamMember updatedMember = TeamMember(
+                  name: name,
+                  mbti: mbti,
+                  description: description,
+                  merit: merit,
+                  style: style,
+                  image: teamMembers[index].image,
+                );
+
+                setState(() {
+                  teamMembers[index] = updatedMember;
+                });
+
                 Navigator.pop(context);
               },
             ),
@@ -138,11 +240,22 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                             color: Colors.blue,
                           ),
                         ),
-                        trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            deleteTeamMember(index);
-                          },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                editTeamMember(index);
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () {
+                                deleteTeamMember(index);
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -239,8 +352,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                           description: description,
                           merit: merit,
                           style: style,
-                          backgroundColor: RenderErrorBox.backgroundColor,
-                          image: "assets/images/img6.png");
+                          image: "assets/images/img1.png");
 
                       addTeamMember(newMember);
 
