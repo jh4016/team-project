@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
             } else if (index == 1) {
               pageWidget = GoalPage();
             } else if (index == 2) {
-              pageWidget = promise(context);
+              pageWidget = PromisePage();
             } else if (index == 3) {
               pageWidget = blog(context);
             } else {
