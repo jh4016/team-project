@@ -98,13 +98,13 @@ class _PromisePageState extends State<PromisePage> {
                             height: 135,
                             child: Center(
                                 child: SizedBox(
-                                  child: new CircularProgressIndicator(
-                                      valueColor: new AlwaysStoppedAnimation(
-                                          Colors.blue),
-                                      strokeWidth: 5.0),
-                                  height: 50.0,
-                                  width: 50.0,
-                                )),
+                              child: new CircularProgressIndicator(
+                                  valueColor:
+                                      new AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0),
+                              height: 50.0,
+                              width: 50.0,
+                            )),
                           ));
                     });
                 setState(() {
@@ -181,13 +181,13 @@ class _PromisePageState extends State<PromisePage> {
                             height: 135,
                             child: Center(
                                 child: SizedBox(
-                                  child: new CircularProgressIndicator(
-                                      valueColor: new AlwaysStoppedAnimation(
-                                          Colors.blue),
-                                      strokeWidth: 5.0),
-                                  height: 50.0,
-                                  width: 50.0,
-                                )),
+                              child: new CircularProgressIndicator(
+                                  valueColor:
+                                      new AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0),
+                              height: 50.0,
+                              width: 50.0,
+                            )),
                           ));
                     });
                 setState(() {
@@ -264,13 +264,13 @@ class _PromisePageState extends State<PromisePage> {
                             height: 135,
                             child: Center(
                                 child: SizedBox(
-                                  child: new CircularProgressIndicator(
-                                      valueColor: new AlwaysStoppedAnimation(
-                                          Colors.blue),
-                                      strokeWidth: 5.0),
-                                  height: 50.0,
-                                  width: 50.0,
-                                )),
+                              child: new CircularProgressIndicator(
+                                  valueColor:
+                                      new AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0),
+                              height: 50.0,
+                              width: 50.0,
+                            )),
                           ));
                     });
                 addPromise(newPromise);
@@ -319,46 +319,54 @@ class _PromisePageState extends State<PromisePage> {
               ],
             ),
           ),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: promises.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        promises[index],
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: Color.fromARGB(255, 0, 43, 79),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: '조선궁서체'),
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {
-                              editPromise(index);
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () {
-                              deletePromise(index);
-                            },
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+          child: ReorderableListView.builder(
+            itemBuilder: (context, index) {
+              return ListTile(
+                key: Key(promises[index]),
+                title: Text(
+                  promises[index],
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Color.fromARGB(255, 0, 43, 79),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: '조선궁서체',
+                  ),
                 ),
-              ),
-            ],
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        editPromise(index);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        deletePromise(index);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+            itemCount: promises.length,
+            onReorder: reorderPromises,
           ),
         ),
       ),
     );
+  }
+
+  void reorderPromises(int oldIndex, int newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) {
+        newIndex -= 1;
+      }
+      final String promise = promises.removeAt(oldIndex);
+      promises.insert(newIndex, promise);
+      savePromises();
+    });
   }
 }

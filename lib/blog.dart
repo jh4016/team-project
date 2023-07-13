@@ -371,171 +371,160 @@ class _BlogPageState extends State<BlogPage> {
               ],
             ),
           ),
-          child: Center(
-            child: ListView.builder(
-              itemCount: blogUrls.length,
-              itemBuilder: (context, index) {
-                return Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
+          child: ReorderableListView(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            onReorder: (oldIndex, newIndex) {
+              setState(() {
+                if (newIndex > oldIndex) {
+                  newIndex -= 1;
+                }
+                final String url = blogUrls.removeAt(oldIndex);
+                final String name = names.removeAt(oldIndex);
+                blogUrls.insert(newIndex, url);
+                names.insert(newIndex, name);
+                saveBlogs();
+              });
+            },
+            children: List.generate(
+              blogUrls.length,
+                  (index) => ListTile(
+                key: Key('$index'),
+                tileColor: Colors.transparent,
+                title: Text(
+                  '${names[index]} ',
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF49009D),
+                    height: 1.4,
+                    fontFamily: 'BMJUA',
+                  ),
+                ),
+                subtitle: Text(
+                  '${blogUrls[index]}',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 23,
+                    fontFamily: 'BMYEONSUNG',
+                  ),
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        editBlog(index);
+                      },
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: RichText(
-                            text: TextSpan(
-                              style: TextStyle(
-                                fontSize: 23,
-                                fontWeight: FontWeight.normal,
-                                color: Color(0xFF49009D),
-                                height: 1.4,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: "${names[index]} : ",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'BMJUA',
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: blogUrls[index],
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontFamily: 'BMYEONSUNG',
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      // 블로그 주소 클릭 시
-                                      if (blogUrls[index].contains('.') ||
-                                          blogUrls[index].contains('com') ||
-                                          blogUrls[index].contains('www')) {
-                                        launchUrl(Uri.parse(blogUrls[index]));
-                                      } else {
-                                        showDialog(
-                                          barrierDismissible: false,
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0)),
-                                              title: Text('오류'),
-                                              content: Text('URL을 열 수 없습니다.'),
-                                              actions: [
-                                                TextButton(
-                                                  child: Text('닫기'),
-                                                  onPressed: () {
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        deleteBlog(index);
+                      },
+                    ),
+                  ],
+                ),
+                onTap: () {
+                  if (blogUrls[index].contains('.') ||
+                      blogUrls[index].contains('com') ||
+                      blogUrls[index].contains('www')) {
+                    launchUrl(Uri.parse(blogUrls[index]));
+                  } else {
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          title: Text('오류'),
+                          content: Text('URL을 열 수 없습니다.'),
+                          actions: [
+                            TextButton(
+                              child: Text('닫기'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(8.0),
+                                      ),
+                                      title: Text('오류'),
+                                      content: Text('검색 하시겠습니까?'),
+                                      actions: [
+                                        TextButton(
+                                          child: Text('예'),
+                                          onPressed: () {
+                                            String quest = blogUrls[index]
+                                                .substring(
+                                                8, blogUrls[index].length)
+                                                .toString();
+                                            launchUrl(Uri.parse(
+                                                'https://www.google.com/search?q=$quest'));
+                                            Navigator.pop(context);
+                                            showDialog(
+                                              barrierDismissible: false,
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                Future.delayed(
+                                                  Duration(seconds: 3),
+                                                      () {
                                                     Navigator.pop(context);
-                                                    showDialog(
-                                                      barrierDismissible: false,
-                                                      context: context,
-                                                      builder:
-                                                          (BuildContext context) {
-                                                        return AlertDialog(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                          title: Text('오류'),
-                                                          content: Text(
-                                                              '검색 하시겠습니까?'),
-                                                          actions: [
-                                                            TextButton(
-                                                              child: Text('예'),
-                                                              onPressed: () {
-                                                                String quest = blogUrls[
-                                                                        index]
-                                                                    .substring(
-                                                                        8,
-                                                                        blogUrls[index]
-                                                                            .length)
-                                                                    .toString();
-                                                                launchUrl(Uri.parse(
-                                                                    'https://www.google.com/search?q=$quest'));
-                                                                Navigator.pop(
-                                                                    context);
-                                                                showDialog(
-                                                                    barrierDismissible:
-                                                                        false,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (BuildContext
-                                                                            context) {
-                                                                      Future.delayed(
-                                                                          Duration(
-                                                                              seconds: 3),
-                                                                          () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      });
-                                                                      return AlertDialog(
-                                                                          title: Text(
-                                                                              '검색 중'),
-                                                                          shape:
-                                                                              RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                          ),
-                                                                          content:
-                                                                              SizedBox(
-                                                                            height:
-                                                                                135,
-                                                                            child: Center(
-                                                                                child: SizedBox(
-                                                                              child: new CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation(Colors.blue), strokeWidth: 5.0),
-                                                                              height: 50.0,
-                                                                              width: 50.0,
-                                                                            )),
-                                                                          ));
-                                                                    });
-                                                              },
-                                                            ),
-                                                            TextButton(child:Text('아니오'), onPressed: () {Navigator.pop(context);},
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
                                                   },
-                                                ),
-                                              ],
+                                                );
+                                                return AlertDialog(
+                                                  title: Text('검색 중'),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        8.0),
+                                                  ),
+                                                  content: SizedBox(
+                                                    height: 135,
+                                                    child: Center(
+                                                      child: SizedBox(
+                                                        child:
+                                                        CircularProgressIndicator(
+                                                          valueColor:
+                                                          AlwaysStoppedAnimation(
+                                                              Colors.blue),
+                                                          strokeWidth: 5.0,
+                                                        ),
+                                                        height: 50.0,
+                                                        width: 50.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           },
-                                        );
-                                      }
-                                    },
-                                ),
-                              ],
+                                        ),
+                                        TextButton(
+                                          child: Text('아니오'),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                             ),
-                          ),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.edit),
-                          onPressed: () {
-                            editBlog(index);
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            deleteBlog(index);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
             ),
           ),
         ),

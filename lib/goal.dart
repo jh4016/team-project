@@ -48,9 +48,8 @@ class _GoalPageState extends State<GoalPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0)
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           title: Text('그것도 못하니'),
           content: Text('정말로 이 목표를 포기하시겠습니까?'),
           actions: [
@@ -97,13 +96,13 @@ class _GoalPageState extends State<GoalPage> {
                             height: 135,
                             child: Center(
                                 child: SizedBox(
-                                  child: new CircularProgressIndicator(
-                                      valueColor: new AlwaysStoppedAnimation(
-                                          Colors.blue),
-                                      strokeWidth: 5.0),
-                                  height: 50.0,
-                                  width: 50.0,
-                                )),
+                              child: new CircularProgressIndicator(
+                                  valueColor:
+                                      new AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0),
+                              height: 50.0,
+                              width: 50.0,
+                            )),
                           ));
                     });
                 setState(() {
@@ -127,10 +126,9 @@ class _GoalPageState extends State<GoalPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0)
-          ),
-          title: Text('목표 재정립'),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          title: Text('그래..힘들 수도 있지'),
           content: TextField(
             controller: editController,
             decoration: InputDecoration(labelText: '목표'),
@@ -154,8 +152,8 @@ class _GoalPageState extends State<GoalPage> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('재정립 완료'),
-                        content: Text('재도전 해봅시다.'),
+                        title: Text('다시'),
+                        content: Text('재도전 해봅시다!'),
                         actions: [
                           TextButton(
                             child: Text('닫기'),
@@ -174,7 +172,7 @@ class _GoalPageState extends State<GoalPage> {
                         Navigator.pop(context);
                       });
                       return AlertDialog(
-                          title: Text('수정 중'),
+                          title: Text('계획 재수립 중'),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
@@ -182,13 +180,13 @@ class _GoalPageState extends State<GoalPage> {
                             height: 135,
                             child: Center(
                                 child: SizedBox(
-                                  child: new CircularProgressIndicator(
-                                      valueColor: new AlwaysStoppedAnimation(
-                                          Colors.blue),
-                                      strokeWidth: 5.0),
-                                  height: 50.0,
-                                  width: 50.0,
-                                )),
+                              child: new CircularProgressIndicator(
+                                  valueColor:
+                                      new AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0),
+                              height: 50.0,
+                              width: 50.0,
+                            )),
                           ));
                     });
                 setState(() {
@@ -210,9 +208,8 @@ class _GoalPageState extends State<GoalPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0)
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           title: Text('새로운 목표 추가'),
           content: TextField(
             controller: goalController,
@@ -265,13 +262,13 @@ class _GoalPageState extends State<GoalPage> {
                             height: 135,
                             child: Center(
                                 child: SizedBox(
-                                  child: new CircularProgressIndicator(
-                                      valueColor: new AlwaysStoppedAnimation(
-                                          Colors.blue),
-                                      strokeWidth: 5.0),
-                                  height: 50.0,
-                                  width: 50.0,
-                                )),
+                              child: new CircularProgressIndicator(
+                                  valueColor:
+                                      new AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 5.0),
+                              height: 50.0,
+                              width: 50.0,
+                            )),
                           ));
                     });
                 addGoal(newGoal);
@@ -321,48 +318,54 @@ class _GoalPageState extends State<GoalPage> {
               ],
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: goals.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                        goals[index],
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Color.fromARGB(255, 13, 23, 41),
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'BMEULJIROTTF',
-                        ),
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {
-                              editGoal(index);
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () {
-                              deleteGoal(index);
-                            },
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+          child: ReorderableListView.builder(
+            itemBuilder: (context, index) {
+              return ListTile(
+                key: Key(goals[index]),
+                title: Text(
+                  goals[index],
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Color.fromARGB(255, 0, 43, 79),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: '조선궁서체',
+                  ),
                 ),
-              ),
-            ],
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        editGoal(index);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        deleteGoal(index);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+            itemCount: goals.length,
+            onReorder: reorderPromises,
           ),
         ),
       ),
     );
+  }
+
+  void reorderPromises(int oldIndex, int newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) {
+        newIndex -= 1;
+      }
+      final String promise = goals.removeAt(oldIndex);
+      goals.insert(newIndex, promise);
+      saveGoals();
+    });
   }
 }
