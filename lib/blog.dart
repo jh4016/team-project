@@ -93,10 +93,8 @@ class _BlogPageState extends State<BlogPage> {
   void editBlog(int index) {
     String initialUrl = blogUrls[index];
     String initialName = names[index];
-    TextEditingController urlEditController =
-        TextEditingController(text: initialUrl);
-    TextEditingController nameEditController =
-        TextEditingController(text: initialName);
+    TextEditingController urlEditController = TextEditingController(text: initialUrl);
+    TextEditingController nameEditController = TextEditingController(text: initialName);
 
     showDialog(
       context: context,
@@ -315,3 +313,4 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 }
+
