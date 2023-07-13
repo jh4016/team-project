@@ -46,26 +46,71 @@ class _PromisePageState extends State<PromisePage> {
 
   void deletePromise(int index) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('약속 삭제'),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+          title: Text('약속 못지켜?!'),
           content: Text('정말로 이 약속을 삭제하시겠습니까?'),
           actions: [
             TextButton(
-              child: Text('취소'),
+              child: Text('아직은 할 수 있다'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('삭제'),
+              child: Text('못 지킴'),
               onPressed: () {
+                Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('삭제 완료'),
+                        content: Text('삭제 되었습니다.'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('삭제 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
                 setState(() {
                   promises.removeAt(index);
                   savePromises();
                 });
-                Navigator.pop(context);
               },
             ),
           ],
@@ -76,17 +121,18 @@ class _PromisePageState extends State<PromisePage> {
 
   void editPromise(int index) {
     String promise = promises[index];
-    TextEditingController editController =
-    TextEditingController(text: promise);
+    TextEditingController editController = TextEditingController(text: promise);
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           title: Text('약속 수정'),
           content: TextField(
             controller: editController,
-            decoration: InputDecoration(labelText: '약속'),
             onChanged: (value) {
               promise = value;
             },
@@ -101,11 +147,53 @@ class _PromisePageState extends State<PromisePage> {
             TextButton(
               child: Text('저장'),
               onPressed: () {
+                Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('수정 완료'),
+                        content: Text('수정 되었습니다.'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('수정 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
                 setState(() {
                   promises[index] = promise;
                   savePromises();
                 });
-                Navigator.pop(context);
               },
             ),
           ],
@@ -118,9 +206,12 @@ class _PromisePageState extends State<PromisePage> {
     String newPromise = '';
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
           title: Text('새로운 약속 추가'),
           content: TextField(
             controller: promiseController,
@@ -139,8 +230,50 @@ class _PromisePageState extends State<PromisePage> {
             TextButton(
               child: Text('추가'),
               onPressed: () {
-                addPromise(newPromise);
                 Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('추가 완료'),
+                        content: Text('약속해줘서 고마워!'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('추가 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
+                addPromise(newPromise);
               },
             ),
           ],
@@ -160,11 +293,10 @@ class _PromisePageState extends State<PromisePage> {
         appBar: AppBar(
           title: Text('약속'),
           titleTextStyle: TextStyle(
-            color: Color(0xFF000000),
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            fontFamily: '조선궁서체'
-          ),
+              color: Color(0xFF000000),
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              fontFamily: '조선궁서체'),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Color(0xFF000000)),
           actions: [
@@ -197,11 +329,10 @@ class _PromisePageState extends State<PromisePage> {
                       title: Text(
                         promises[index],
                         style: TextStyle(
-                          fontSize: 22,
-                          color: Color.fromARGB(255, 0, 43, 79),
-                          fontWeight: FontWeight.bold,
-                            fontFamily: '조선궁서체'
-                        ),
+                            fontSize: 22,
+                            color: Color.fromARGB(255, 0, 43, 79),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: '조선궁서체'),
                       ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,

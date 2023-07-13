@@ -44,26 +44,72 @@ class _GoalPageState extends State<GoalPage> {
 
   void deleteGoal(int index) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('목표 삭제'),
-          content: Text('정말로 이 목표를 삭제하시겠습니까?'),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0)
+          ),
+          title: Text('그것도 못하니'),
+          content: Text('정말로 이 목표를 포기하시겠습니까?'),
           actions: [
             TextButton(
-              child: Text('취소'),
+              child: Text('다시 도전'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('삭제'),
+              child: Text('포기'),
               onPressed: () {
+                Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('지금부터'),
+                        content: Text('당신은 패배자 입니다.'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('포기 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
                 setState(() {
                   goals.removeAt(index);
                   saveGoals();
                 });
-                Navigator.pop(context);
               },
             ),
           ],
@@ -77,10 +123,14 @@ class _GoalPageState extends State<GoalPage> {
     TextEditingController editController = TextEditingController(text: goal);
 
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('목표 수정'),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0)
+          ),
+          title: Text('목표 재정립'),
           content: TextField(
             controller: editController,
             decoration: InputDecoration(labelText: '목표'),
@@ -90,19 +140,61 @@ class _GoalPageState extends State<GoalPage> {
           ),
           actions: [
             TextButton(
-              child: Text('취소'),
+              child: Text('보류'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('저장'),
+              child: Text('재도전'),
               onPressed: () {
+                Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('재정립 완료'),
+                        content: Text('재도전 해봅시다.'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('수정 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
                 setState(() {
                   goals[index] = goal;
                   saveGoals();
                 });
-                Navigator.pop(context);
               },
             ),
           ],
@@ -113,11 +205,14 @@ class _GoalPageState extends State<GoalPage> {
 
   void showAddGoalDialog() {
     String newGoal = '';
-
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0)
+          ),
           title: Text('새로운 목표 추가'),
           content: TextField(
             controller: goalController,
@@ -136,8 +231,50 @@ class _GoalPageState extends State<GoalPage> {
             TextButton(
               child: Text('추가'),
               onPressed: () {
-                addGoal(newGoal);
                 Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('추가 완료'),
+                        content: Text('새로운 목표를 위해 화이팅!'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('추가 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
+                addGoal(newGoal);
               },
             ),
           ],
@@ -160,7 +297,7 @@ class _GoalPageState extends State<GoalPage> {
             color: Color(0xFF000000),
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            fontFamily: 'batang',
+            fontFamily: 'BMEULJIROTTF',
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Color(0xFF000000)),
@@ -195,10 +332,10 @@ class _GoalPageState extends State<GoalPage> {
                       title: Text(
                         goals[index],
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 30,
                           color: Color.fromARGB(255, 13, 23, 41),
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'batang',
+                          fontFamily: 'BMEULJIROTTF',
                         ),
                       ),
                       trailing: Row(

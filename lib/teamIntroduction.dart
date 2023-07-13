@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:teamproject/teammembers.dart';
+
 import 'teamIntroductionDetail.dart';
 
 class TeamIntroductionPage extends StatefulWidget {
@@ -19,23 +20,69 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
   void deleteTeamMember(int index) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
           title: Text('니 팀 버려?'),
-          content: Text('정말로 이 팀원을 떠나보내시겠습니까?'),
+          content: Text('정말로 이 팀원을 버립니까?'),
           actions: [
             TextButton(
-              child: Text('아니오'),
+              child: Text('버린다'),
               onPressed: () {
                 Navigator.pop(context);
-              },
-            ),
-            TextButton(
-              child: Text('예(이별합니다.)'),
-              onPressed: () {
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('방출 완료'),
+                        content: Text('이 멤버는 우리 팀이 아닙니다!'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
                 setState(() {
                   teamMembers.removeAt(index);
                 });
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('버리는 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
+              },
+            ),
+            TextButton(
+              child: Text('용서한다'),
+              onPressed: () {
                 Navigator.pop(context);
               },
             ),
@@ -48,15 +95,18 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
   void editTeamMember(int index) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         String name = teamMembers[index].name;
         String mbti = teamMembers[index].mbti;
         String description = teamMembers[index].description;
         String merit = teamMembers[index].merit;
         String style = teamMembers[index].style;
-
         return AlertDialog(
-          title: Text('팀원 정보 수정'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          title: Text('멤버 정보 수정'),
           content: SingleChildScrollView(
             child: Column(
               children: [
@@ -120,14 +170,32 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
           ),
           actions: [
             TextButton(
-              child: Text('Cancel'),
+              child: Text('보류'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('Save'),
+              child: Text('수정'),
               onPressed: () {
+                Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('수정 완료'),
+                        content: Text('수정이 완료 되었습니다!'),
+                        actions: [
+                          TextButton(
+                            child: Text('닫기'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    });
                 TeamMember updatedMember = TeamMember(
                   name: name,
                   mbti: mbti,
@@ -141,8 +209,31 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                 setState(() {
                   teamMembers[index] = updatedMember;
                 });
-
-                Navigator.pop(context);
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 1), () {
+                        Navigator.pop(context);
+                      });
+                      return AlertDialog(
+                          title: Text('수정 중'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          content: SizedBox(
+                            height: 135,
+                            child: Center(
+                                child: SizedBox(
+                                  child: new CircularProgressIndicator(
+                                      valueColor: new AlwaysStoppedAnimation(
+                                          Colors.blue),
+                                      strokeWidth: 5.0),
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                          ));
+                    });
               },
             ),
           ],
@@ -155,11 +246,14 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('팀원 소개'),
-        titleTextStyle: TextStyle(
-          color: Color(0xFF000000),
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
+        title: Text(
+          '팀원 소개',
+          style: TextStyle(
+            color: Color(0xFF000000),
+            fontSize: 35,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'BMJUA',
+          ),
         ),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Color(0xFF000000)),
@@ -168,6 +262,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
             child: Icon(Icons.add),
             onPressed: () {
               showDialog(
+                barrierDismissible: false,
                 context: context,
                 builder: (BuildContext context) {
                   String name = '';
@@ -175,9 +270,11 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                   String description = '';
                   String merit = '';
                   String style = '';
-
                   return AlertDialog(
-                    title: Text('새로운 멤버 추가'),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    title: Text('너 내 동료가 되라'),
                     content: SingleChildScrollView(
                       child: Column(
                         children: [
@@ -236,14 +333,32 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                     ),
                     actions: [
                       TextButton(
-                        child: Text('Cancel'),
+                        child: Text('보류'),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                       ),
                       TextButton(
-                        child: Text('Add'),
+                        child: Text('영입'),
                         onPressed: () {
+                          Navigator.pop(context);
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('영입 완료'),
+                                  content: Text('지금부터 이 멤버는 제껍니다!'),
+                                  actions: [
+                                    TextButton(
+                                      child: Text('닫기'),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
                           TeamMember newMember = TeamMember(
                             name: name,
                             mbti: mbti,
@@ -261,10 +376,34 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                               ),
                             ),
                             image:
-                                "assets/images/img${Random().nextInt(9) + 6}.png",
+                            "assets/images/img${Random().nextInt(9) + 6}.png",
                           );
                           addTeamMember(newMember);
-                          Navigator.pop(context);
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                Future.delayed(Duration(seconds: 1), () {
+                                  Navigator.pop(context);
+                                });
+                                return AlertDialog(
+                                    title: Text('동료로 영입 중'),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    content: SizedBox(
+                                      height: 135,
+                                      child: Center(
+                                          child: SizedBox(
+                                            child: new CircularProgressIndicator(
+                                                valueColor: new AlwaysStoppedAnimation(
+                                                    Colors.blue),
+                                                strokeWidth: 5.0),
+                                            height: 50.0,
+                                            width: 50.0,
+                                          )),
+                                    ));
+                              });
                         },
                       ),
                     ],
@@ -332,7 +471,7 @@ class _TeamIntroductionPageState extends State<TeamIntroductionPage> {
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'human',
+                            fontFamily: 'HMKMRHD',
                             color: Color(0xFF26569D),
                           ),
                         ),
