@@ -71,6 +71,18 @@ flutter:
     - family: human
       fonts:
         - asset: assets/fonts/HMKMRHD.TTF
+    - family: BMDOHYEON
+      fonts:
+        - asset: assets/fonts/BMDOHYEON.ttf
+    - family: BMEULJIROTTF
+      fonts:
+        - asset: assets/fonts/BMEULJIROTTF.ttf
+    - family: BMJUA
+      fonts:
+        - asset: assets/fonts/BMJUA.ttf
+    - family: BMYEONSUNG
+      fonts:
+        - asset: assets/fonts/BMYEONSUNG.ttf
   assets:
     - assets/images/img1.png
     - assets/images/img2.png
