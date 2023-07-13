@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
             if (index == 0) {
               pageWidget = TeamIntroductionPage();
             } else if (index == 1) {
-              pageWidget = goal(context);
+              pageWidget = GoalPage();
             } else if (index == 2) {
               pageWidget = promise(context);
             } else if (index == 3) {
