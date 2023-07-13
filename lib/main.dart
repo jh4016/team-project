@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teamproject/HomePage.dart';
+import 'package:teamproject/teammembers.dart';
+List<TeamMember> teamMembers = [];
 
 void main() {
   runApp(TeamProjectApp());
