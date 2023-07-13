@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
             } else if (index == 2) {
               pageWidget = PromisePage();
             } else if (index == 3) {
-              pageWidget = blog(context);
+              pageWidget = BlogPage();
             } else {
               // index에 해당하는 페이지가 없는 경우 처리할 내용을 추가합니다.
               // 예를 들어, 에러 페이지를 표시하거나 기본 페이지로 이동할 수 있습니다.
