@@ -160,6 +160,7 @@ class _GoalPageState extends State<GoalPage> {
             color: Color(0xFF000000),
             fontSize: 30,
             fontWeight: FontWeight.bold,
+            fontFamily: 'batang',
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Color(0xFF000000)),
@@ -184,6 +185,7 @@ class _GoalPageState extends State<GoalPage> {
             ),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
             children: [
               Expanded(
                 child: ListView.builder(
@@ -196,6 +198,7 @@ class _GoalPageState extends State<GoalPage> {
                           fontSize: 22,
                           color: Color.fromARGB(255, 13, 23, 41),
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'batang',
                         ),
                       ),
                       trailing: Row(

@@ -163,6 +163,7 @@ class _PromisePageState extends State<PromisePage> {
             color: Color(0xFF000000),
             fontSize: 30,
             fontWeight: FontWeight.bold,
+            fontFamily: '조선궁서체'
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Color(0xFF000000)),
@@ -199,6 +200,7 @@ class _PromisePageState extends State<PromisePage> {
                           fontSize: 22,
                           color: Color.fromARGB(255, 0, 43, 79),
                           fontWeight: FontWeight.bold,
+                            fontFamily: '조선궁서체'
                         ),
                       ),
                       trailing: Row(
