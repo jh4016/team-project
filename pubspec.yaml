@@ -62,13 +62,13 @@ flutter:
       fonts:
         - asset: assets/fonts/batang.ttc
 
-    - family: script
+    - family: MATURASC
       fonts:
         - asset: assets/fonts/MATURASC.TTF
     - family: 조선궁서체
       fonts:
         - asset: assets/fonts/조선궁서체.ttf
-    - family: human
+    - family: HMKMRHD
       fonts:
         - asset: assets/fonts/HMKMRHD.TTF
     - family: BMDOHYEON
