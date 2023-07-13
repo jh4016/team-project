@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class BlogPage extends StatefulWidget {
   @override
@@ -92,10 +93,8 @@ class _BlogPageState extends State<BlogPage> {
   void editBlog(int index) {
     String initialUrl = blogUrls[index];
     String initialName = names[index];
-    TextEditingController urlEditController =
-    TextEditingController(text: initialUrl);
-    TextEditingController nameEditController =
-    TextEditingController(text: initialName);
+    TextEditingController urlEditController = TextEditingController(text: initialUrl);
+    TextEditingController nameEditController = TextEditingController(text: initialName);
 
     showDialog(
       context: context,
@@ -108,10 +107,16 @@ class _BlogPageState extends State<BlogPage> {
               TextField(
                 controller: urlEditController,
                 decoration: InputDecoration(labelText: 'URL'),
+                onChanged: (value) {
+                  initialUrl = value;
+                },
               ),
               TextField(
                 controller: nameEditController,
                 decoration: InputDecoration(labelText: 'Name'),
+                onChanged: (value) {
+                  initialName = value;
+                },
               ),
             ],
           ),
@@ -154,7 +159,7 @@ class _BlogPageState extends State<BlogPage> {
                 controller: urlController,
                 decoration: InputDecoration(labelText: 'URL'),
                 onChanged: (value) {
-                  newBlogURls = value;
+                  newBlogURls = "https://$value";
                 },
               ),
               TextField(
@@ -186,30 +191,6 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 
-  void launchUrl(Uri uri) async {
-    if (await canLaunch(uri.toString())) {
-      await launch(uri.toString());
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('오류'),
-            content: Text('URL을 열 수 없습니다.'),
-            actions: [
-              TextButton(
-                child: Text('닫기'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -233,7 +214,7 @@ class _BlogPageState extends State<BlogPage> {
               fontSize: 30,
               fontWeight: FontWeight.bold,
               color: Color(0xFF000000),
-              fontFamily: 'BMEULIROTTF',
+              fontFamily: 'BMEULJIROTTF',
             ),
           ),
           actions: [
@@ -296,7 +277,12 @@ class _BlogPageState extends State<BlogPage> {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      launchUrl(Uri.parse(blogUrls[index]));
+                                      if(blogUrls[index].contains('.')) {
+                                        launchUrl(Uri.parse(blogUrls[index]));
+                                      } else {
+                                        String quest =blogUrls[index].substring(8,blogUrls[index].length).toString();
+                                        launchUrl(Uri.parse('https://www.google.com/search?q=$quest'));
+                                      }
                                     },
                                 ),
                               ],
@@ -327,3 +313,4 @@ class _BlogPageState extends State<BlogPage> {
     );
   }
 }
+
