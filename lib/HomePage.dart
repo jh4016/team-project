@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
       {
         "name": "약속",
         "imgUrl":
-            "https://english.koreadaily.com/wp-content/uploads/2019/10/Copy-of-Featured-Image-4-2.jpg",
+            "https://img.freepik.com/premium-photo/man-and-woman-do-pinky-promise-or-pinky-swear-hands-sign-on-white-background_335640-4072.jpg",
       },
       {
         "name": "블로그",
@@ -32,12 +32,16 @@ class HomePage extends StatelessWidget {
       },
     ];
     return Scaffold(
-        appBar: AppBar(
-          title: Text('중꺾마'),
-          titleTextStyle: TextStyle(
+        appBar:AppBar(
+          title: Text(
+            '중꺾마',
+            style: TextStyle(
               color: Color(0xFF000000),
               fontSize: 30,
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'BMDOHYEON', // 여기에 사용할 폰트 패밀리를 입력하세요
+            ),
+          ),
           backgroundColor: Colors.white,
         ),
         body: Center(
@@ -53,11 +57,11 @@ class HomePage extends StatelessWidget {
             if (index == 0) {
               pageWidget = TeamIntroductionPage();
             } else if (index == 1) {
-              pageWidget = goal(context);
+              pageWidget = GoalPage();
             } else if (index == 2) {
-              pageWidget = promise(context);
+              pageWidget = PromisePage();
             } else if (index == 3) {
-              pageWidget = blog(context);
+              pageWidget = BlogPage();
             } else {
               // index에 해당하는 페이지가 없는 경우 처리할 내용을 추가합니다.
               // 예를 들어, 에러 페이지를 표시하거나 기본 페이지로 이동할 수 있습니다.
@@ -106,6 +110,7 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 36,
+                        fontFamily: 'BMDOHYEON'
                       ),
                     ),
                   ],

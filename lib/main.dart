@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:teamproject/HomePage.dart';
 
-import 'HomePage.dart';
-
-/* This is the data that we are going to use to render the grid of products using Gridview.
-As pointed out by Pranay, you can use the fetched data from a remote server.
-but for the sake of simplicity, I am using hardcoded data.
-*/
-
-/*중요 파일*/
 void main() {
-  runApp(MyApp());
+  runApp(TeamProjectApp());
 }
 
-class MyApp extends StatelessWidget {
+class TeamProjectApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Card Navigation',
+      title: 'Team Project',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: MaterialColor(
+          Colors.blue.value,
+          const <int, Color>{
+            50: Color(0xFFE5F6FD),
+            100: Color(0xFFBEE9FA),
+            200: Color(0xFF8DDCF7),
+            300: Color(0xFF5BCFF4),
+            400: Color(0xFF37C4F3),
+            500: Color(0xFF14B9F1),
+            600: Color(0xFF13A7D8),
+            700: Color(0xFF0F91BA),
+            800: Color(0xFF0B7C9C),
+            900: Color(0xFF075770),
+          },
+        ),
       ),
       home: HomePage(),
     );

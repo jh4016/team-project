@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:teamproject/teammembers.dart';
 
-import 'teamIntroduction.dart';
 
 /*중요 파일*/
 class TeamMemberDetailPage extends StatelessWidget {
   final TeamMember member;
 
-  TeamMemberDetailPage({required this.member});
+  const TeamMemberDetailPage({super.key, required this.member});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,7 @@ class TeamMemberDetailPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Color(0xFF000000)),
       ),
       body: Container(
-        decoration: member.backgroundColor,
-        // 멤버의 배경색 설정
+        decoration: member.backgroundColor, // 멤버의 배경색 설정
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
@@ -41,18 +39,17 @@ class TeamMemberDetailPage extends StatelessWidget {
                     Text(
                       "이름: ",
                       style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic),
                     ),
-                    Text(
-                      member.name,
-                      style: TextStyle(
+                    Text(member.name,
+                        style: TextStyle(
                           fontSize: 29,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'human',
-                          color: Color(0xFFFFFFFF)),
-                    )
+                          color: Color(0xFFEEEDED),
+                        ))
                   ],
                 ),
                 SizedBox(
@@ -64,18 +61,18 @@ class TeamMemberDetailPage extends StatelessWidget {
                     Text(
                       "MBTI: ",
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Text(
-                      member.mbti,
-                      style: TextStyle(
+                    Text(member.mbti,
+                        style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'human',
-                          color: Color(0xFFFFFFFF)),
-                    )
+                          color: Color(0xFFEEEDED),
+                        ))
                   ],
                 ),
                 SizedBox(height: 25),
@@ -83,14 +80,18 @@ class TeamMemberDetailPage extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: "[팀]과 [자신]에 대한 설명 및 MBTI: \n",
-                        style: TextStyle(fontSize: 18),
+                        text: "[팀]과 [자신]에 대한 설명 및 MBTI: \n\t ",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic),
                       ),
                       TextSpan(
                         text: member.description,
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFFEEEDED),
                         ),
                       ),
                     ],
@@ -101,14 +102,18 @@ class TeamMemberDetailPage extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: "[객관적으로 살펴본 자신의 장점: \n",
-                        style: TextStyle(fontSize: 18),
+                        text: "객관적으로 살펴본 자신의 장점: \n\t ",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic),
                       ),
                       TextSpan(
                         text: member.merit,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xFFEEEDED),
                         ),
                       ),
                     ],
@@ -119,14 +124,18 @@ class TeamMemberDetailPage extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: "자신의 스타일 협업 스타일 소개: \n",
-                        style: TextStyle(fontSize: 18),
+                        text: "자신의 스타일 협업 스타일 소개: \n\t ",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic),
                       ),
                       TextSpan(
                         text: member.style,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xFFEEEDED),
                         ),
                       ),
                     ],

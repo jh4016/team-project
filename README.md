@@ -1,2 +1,2 @@
 
-![중꺾마](https://github.com/jh4016/team-project/assets/106107068/601fbf76-7bcc-4bfa-b636-9f43bd513b86)
+![시연 영상](https://github.com/jh4016/team-project/assets/106107068/7ca72497-7f01-4564-a2f0-967b9123c456)
