@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -324,6 +325,43 @@ class _BlogPageState extends State<BlogPage> {
         });
   }
 
+  void copyBlog(int index) {
+    String blogUrl = blogUrls[index];
+    String name = names[index];
+
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('어떤 값을 붙여 넣으시겠습니까?'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('이름'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Clipboard.setData(ClipboardData(text: name));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.link),
+                title: Text('블로그 주소'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Clipboard.setData(ClipboardData(text: blogUrl));
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -373,7 +411,7 @@ class _BlogPageState extends State<BlogPage> {
           ),
           child: ReorderableListView(
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            onReorder: (oldIndex, newIndex) {
+            onReorder: (int oldIndex, int newIndex) {
               setState(() {
                 if (newIndex > oldIndex) {
                   newIndex -= 1;
@@ -385,32 +423,42 @@ class _BlogPageState extends State<BlogPage> {
                 saveBlogs();
               });
             },
-            children: List.generate(
-              blogUrls.length,
-                  (index) => ListTile(
+            children: List.generate(blogUrls.length, (index) {
+              return ListTile(
                 key: Key('$index'),
                 tileColor: Colors.transparent,
-                title: Text(
-                  '${names[index]} ',
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF49009D),
-                    height: 1.4,
-                    fontFamily: 'BMJUA',
-                  ),
-                ),
-                subtitle: Text(
-                  '${blogUrls[index]}',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 23,
-                    fontFamily: 'BMYEONSUNG',
-                  ),
-                ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      '${names[index]}',
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF49009D),
+                        height: 1.4,
+                        fontFamily: 'BMJUA',
+                      ),
+                    ),
+                    Text(
+                      '${blogUrls[index]}',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 23,
+                        fontFamily: 'BMYEONSUNG',
+                      ),
+                    ),
+                  ],
+                ),
+                trailing: Wrap(
+                  spacing: 8,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.content_copy),
+                      onPressed: () {
+                        copyBlog(index);
+                      },
+                    ),
                     IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () {
@@ -453,7 +501,7 @@ class _BlogPageState extends State<BlogPage> {
                                     return AlertDialog(
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(8.0),
+                                            BorderRadius.circular(8.0),
                                       ),
                                       title: Text('오류'),
                                       content: Text('검색 하시겠습니까?'),
@@ -463,7 +511,7 @@ class _BlogPageState extends State<BlogPage> {
                                           onPressed: () {
                                             String quest = blogUrls[index]
                                                 .substring(
-                                                8, blogUrls[index].length)
+                                                    8, blogUrls[index].length)
                                                 .toString();
                                             launchUrl(Uri.parse(
                                                 'https://www.google.com/search?q=$quest'));
@@ -473,27 +521,25 @@ class _BlogPageState extends State<BlogPage> {
                                               context: context,
                                               builder: (BuildContext context) {
                                                 Future.delayed(
-                                                  Duration(seconds: 3),
-                                                      () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                );
+                                                    Duration(seconds: 3), () {
+                                                  Navigator.pop(context);
+                                                });
                                                 return AlertDialog(
                                                   title: Text('검색 중'),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        8.0),
+                                                        BorderRadius.circular(
+                                                            8.0),
                                                   ),
                                                   content: SizedBox(
                                                     height: 135,
                                                     child: Center(
                                                       child: SizedBox(
                                                         child:
-                                                        CircularProgressIndicator(
+                                                            CircularProgressIndicator(
                                                           valueColor:
-                                                          AlwaysStoppedAnimation(
-                                                              Colors.blue),
+                                                              AlwaysStoppedAnimation(
+                                                                  Colors.blue),
                                                           strokeWidth: 5.0,
                                                         ),
                                                         height: 50.0,
@@ -524,8 +570,8 @@ class _BlogPageState extends State<BlogPage> {
                     );
                   }
                 },
-              ),
-            ),
+              );
+            }),
           ),
         ),
       ),

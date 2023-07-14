@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PromisePage extends StatefulWidget {
@@ -281,7 +282,24 @@ class _PromisePageState extends State<PromisePage> {
       },
     );
   }
+  void copyPromise(int index) {
+    String promise = promises[index];
+    Clipboard.setData(ClipboardData(text: promise));
 
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.pop(context);
+        });
+        return AlertDialog(
+          title: Text('클립보드에 복사 완료되었습니다'),
+          content: Text('이제 자유롭게 쓰시면 됩니다'),
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -335,6 +353,12 @@ class _PromisePageState extends State<PromisePage> {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    IconButton(
+                      icon: Icon(Icons.content_copy),
+                      onPressed: () {
+                        copyPromise(index);
+                      },
+                    ),
                     IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () {

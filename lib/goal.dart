@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GoalPage extends StatefulWidget {
@@ -246,6 +247,7 @@ class _GoalPageState extends State<GoalPage> {
                         ],
                       );
                     });
+                addGoal(newGoal);
                 showDialog(
                     barrierDismissible: false,
                     context: context,
@@ -271,10 +273,28 @@ class _GoalPageState extends State<GoalPage> {
                             )),
                           ));
                     });
-                addGoal(newGoal);
               },
             ),
           ],
+        );
+      },
+    );
+  }
+
+  void copyGoal(int index) {
+    String goal = goals[index];
+    Clipboard.setData(ClipboardData(text: goal));
+
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.pop(context);
+        });
+        return AlertDialog(
+          title: Text('클립보드에 복사 완료되었습니다'),
+          content: Text('이제 자유롭게 쓰시면 됩니다'),
         );
       },
     );
@@ -334,6 +354,12 @@ class _GoalPageState extends State<GoalPage> {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    IconButton(
+                      icon: Icon(Icons.content_copy),
+                      onPressed: () {
+                        copyGoal(index);
+                      },
+                    ),
                     IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () {
